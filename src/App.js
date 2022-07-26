@@ -5,13 +5,18 @@ import gitImg from './Assets/img/icon.jpg';
 function App() {
 
   const [search, setSearch] = useState("");
+  const [userData, setUserDate] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault(); //Interrompendo comportamento submit padrão da página
+    fetch(`https://api.github.com/users/${search}`)
+    .then(response => response.json())
+    .then(userResponse => setUserDate(userResponse));
   }
 
+  console.log(userData);
+
   const handleChange = (event) => {
-    console.log(event.target.value);
     setSearch(event.target.value);
   }
 
