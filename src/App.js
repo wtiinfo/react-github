@@ -10,11 +10,9 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault(); //Interrompendo comportamento submit padrão da página
     fetch(`https://api.github.com/users/${search}`)
-    .then(response => response.json())
-    .then(userResponse => setUserDate(userResponse));
+      .then(response => response.json())
+      .then(userResponse => setUserDate(userResponse));
   }
-
-  console.log(userData);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -36,16 +34,15 @@ function App() {
         </div>
       </form>
       <div className="py-5">
-        <img src={gitImg} alt="github" height="200px" className="responsive rounded-circle" />
-
+        <img src={!userData ? gitImg : userData.avatar_url} alt="github" height="200px" className="responsive rounded-circle" />
         <h2 className="pt-5">
-          <a href="https://github.com/wtiinfo" target="_new" className="text-decoration-none">Wando Borges</a>
+          <a href="https://github.com/wtiinfo" target="_new" className="text-decoration-none">{!userData ? "Wando Borges" : userData.name}</a>
         </h2>
         <h3>
-          Ribeirão Pires - SP
+          {!userData ? "São Paulo" : userData.location}
         </h3>
         <p>
-          <a href="#" target="_new" className="text-info text-decoration-none">www.wtiinfo.com</a>
+          Repositórios publicos: {!userData ? '0' : userData.public_repos}
         </p>
       </div>
 
