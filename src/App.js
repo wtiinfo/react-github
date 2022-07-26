@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import gitImg from './Assets/img/icon.jpg';
 
 function App() {
 
+  const [search, setSearch] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault(); //Interrompendo comportamento submit padrão da página
   }
 
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setSearch(event.target.value);
+  }
 
   return (
     <div className="container text-center">
@@ -15,7 +21,7 @@ function App() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="input-group">
-            <input type="text" className="form-control" required />
+            <input type="text" value={search} onChange={handleChange} className="form-control" required />
             <span className="input-group-btn">
               <button type="submit" className="btn btn-success">
                 Search
