@@ -3,10 +3,16 @@ import './App.css';
 import gitImg from './Assets/img/icon.jpg';
 
 function App() {
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); //Interrompendo comportamento submit padrão da página
+  }
+
+
   return (
     <div className="container text-center">
       <h1 className="py-5 text-uppercase">Github profile</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="input-group">
             <input type="text" className="form-control" required />
@@ -19,7 +25,7 @@ function App() {
         </div>
       </form>
       <div className="py-5">
-        <img src={gitImg} alt="github-image" height="200px" className="responsive rounded-circle" />
+        <img src={gitImg} alt="github" height="200px" className="responsive rounded-circle" />
 
         <h2 className="pt-5">
           <a href="https://github.com/wtiinfo" target="_new" className="text-decoration-none">Wando Borges</a>
